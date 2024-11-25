@@ -23,3 +23,10 @@ This app interfaces with [{JSON} Placeholder](https://jsonplaceholder.typicode.c
 
 GET /users: Fetch paginated list of contacts.
 GET /users/:id: Fetch details for a specific contact.
+
+todo:
+
+- pagination?
+- debounce infinite scroll?
+- force refetch
+- skip?
