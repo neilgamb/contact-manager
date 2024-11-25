@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactList from "./components/ContactList";
 import ContactDetails from "./components/ContactDetails";
 import "./App.css";
+import { useAppSelector } from "./app/store";
+import { selectIsGetContactsError } from "./features/contacts/contactsApiSelectors";
 
 const App: React.FC = () => {
+  const isGetContactsError = useAppSelector(selectIsGetContactsError);
+
   return (
     <Router>
       <div style={{ display: "flex", height: "100vh" }}>
-        {/* Left-hand panel for Contact List */}
         <div
           style={{
             width: "300px",
@@ -19,12 +22,15 @@ const App: React.FC = () => {
           <ContactList />
         </div>
 
-        {/* Right-hand panel for Contact Details */}
         <div style={{ flex: 1, padding: "16px" }}>
           <Routes>
             <Route
               path="/"
-              element={<div>Select a contact to view details</div>}
+              element={
+                !isGetContactsError && (
+                  <div>Select a contact to view details</div>
+                )
+              }
             />
             <Route path="/user/:id" element={<ContactDetails />} />
           </Routes>

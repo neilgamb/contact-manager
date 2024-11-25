@@ -11,8 +11,19 @@ const ContactDetails: React.FC = () => {
     isFetching,
   } = useGetContactByIdQuery(Number(id));
 
+  if (error) {
+    return null;
+  }
+
   if (isLoading || isFetching) return <div>Loading...</div>;
-  if (error) return <div>Error loading contact details</div>;
+  if (error)
+    return (
+      <div>
+        Uh oh!
+        <br />
+        Error loading contact details...
+      </div>
+    );
   if (!contact) return <div>No contact found</div>;
 
   return (
