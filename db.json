@@ -1,39 +1,32 @@
 {
   "contacts": [
     {
-      "id": "e93d207a-1cfc-438f-8aa6-ca1b1aaa2dfc",
+      "id": "e92m",
       "name": "David Martinez",
       "email": "user1@example.com",
       "phone": "486-316-4900",
       "website": "www.user1.com"
     },
     {
-      "id": "ce941a9b-9a6b-44cf-8604-8739dc7674d9",
+      "id": "ls92",
       "name": "Jessica Hernandez",
       "email": "user2@example.com",
       "phone": "956-230-7300",
       "website": "www.user2.com"
     },
     {
-      "id": "f848ec30-5d6c-4842-8fd0-bc646bd6d0d4",
+      "id": "dm24",
       "name": "Emma Thomas",
       "email": "user3@example.com",
       "phone": "871-691-8555",
       "website": "www.user3.com"
     },
     {
-      "id": "d3f836e1-d5d9-4c86-900a-d7a2eb9b3eb6",
+      "id": "f03m",
       "name": "Daniel Smith",
       "email": "user4@example.com",
       "phone": "143-994-7302",
       "website": "www.user4.com"
-    },
-    {
-      "id": "4dc4f467-3bc3-4f59-ba95-c6311fcbd88f",
-      "name": "Neilson Gamble",
-      "email": "neilgamb@gmail.com",
-      "phone": "123-456-7890",
-      "website": "neilsongamble.com"
     }
   ]
 }

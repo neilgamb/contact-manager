@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ContactList from "./components/ContactList";
+import ContactMenu from "./components/ContactMenu";
 import ContactDetails from "./components/ContactDetails";
 import { useAppSelector } from "./app/store";
 import { selectIsGetContactsError } from "./features/contacts/contactsApiSelectors";
@@ -16,11 +16,11 @@ const App: React.FC = () => {
           style={{
             width: "300px",
             borderRight: "1px solid #ccc",
-            overflowY: "auto",
-            padding: "16px",
+            overflowY: "hidden",
+            // padding: "16px",
           }}
         >
-          <ContactList />
+          <ContactMenu />
         </div>
 
         <div style={{ flex: 1, padding: "16px" }}>
