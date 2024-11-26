@@ -4,14 +4,9 @@ import ContactMenuHeader from "./ContactMenuHeader";
 import ContactMenuList from "./ContactMenuList";
 
 const ContactMenu: React.FC = () => {
-  const {
-    data: contacts,
-    error,
-    isLoading,
-    isFetching,
-  } = useGetContactsQuery(undefined);
+  const { data: contacts, error, isLoading } = useGetContactsQuery(undefined);
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return <div>Loading contacts...</div>;
   }
 

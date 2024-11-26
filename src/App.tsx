@@ -3,11 +3,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactMenu from "./components/ContactMenu";
 import ContactDetails from "./components/ContactDetails";
 import { useAppSelector } from "./app/store";
-import { selectIsGetContactsError } from "./features/contacts/contactsApiSelectors";
+import {
+  selectIsGetContactsError,
+  selectIsGetContactsLoading,
+} from "./features/contacts/contactsApiSelectors";
 import "./App.css";
 
 const App: React.FC = () => {
   const isGetContactsError = useAppSelector(selectIsGetContactsError);
+  const isGetContactsLoading = useAppSelector(selectIsGetContactsLoading);
 
   return (
     <Router>
@@ -17,7 +21,6 @@ const App: React.FC = () => {
             width: "300px",
             borderRight: "1px solid #ccc",
             overflowY: "hidden",
-            // padding: "16px",
           }}
         >
           <ContactMenu />
@@ -28,9 +31,11 @@ const App: React.FC = () => {
             <Route
               path="/"
               element={
-                !isGetContactsError && (
-                  <div>Select a contact to view details</div>
-                )
+                isGetContactsLoading
+                  ? null
+                  : !isGetContactsError && (
+                      <div>Select a contact to view details</div>
+                    )
               }
             />
             <Route path="/contact/:id" element={<ContactDetails />} />

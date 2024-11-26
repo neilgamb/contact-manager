@@ -10,6 +10,11 @@ export const selectIsGetContactsError = createSelector(
   (contactsQueryState) => !!contactsQueryState?.error
 );
 
+export const selectIsGetContactsLoading = createSelector(
+  selectContactsQuery,
+  (contactsQueryState) => contactsQueryState?.isLoading
+);
+
 export const selectContacts = createSelector(
   selectContactsQuery,
   (contactsQueryState) => contactsQueryState?.data
