@@ -3,13 +3,14 @@ import { useParams } from "react-router-dom";
 import { useGetContactByIdQuery } from "../features/contacts/contactsApi";
 
 const ContactDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id = "" } = useParams<{ id: string }>();
+
   const {
     data: contact,
     error,
     isLoading,
     isFetching,
-  } = useGetContactByIdQuery({ id: Number(id) });
+  } = useGetContactByIdQuery({ id });
 
   if (error) {
     return null;

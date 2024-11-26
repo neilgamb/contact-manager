@@ -7,11 +7,6 @@ import {
 } from "@reduxjs/toolkit/dist/query";
 import { Contact } from "../../../types/contact";
 
-export type GetContactsArgs = {
-  page?: number;
-  limit?: number;
-};
-
 export type GetContactsResponse = Contact[];
 
 export const getContactsHandler = (
@@ -21,16 +16,13 @@ export const getContactsHandler = (
     "contactsApi"
   >
 ): QueryDefinition<
-  GetContactsArgs | undefined,
+  undefined,
   BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>,
   never,
   GetContactsResponse,
   "contactsApi"
 > => {
-  return builder.query<GetContactsResponse, GetContactsArgs | undefined>({
-    query: ({ page = 1, limit = 50 }: GetContactsArgs) => ({
-      url: `contacts?_page=${page}&_limit=${limit}`,
-      method: "GET",
-    }),
+  return builder.query<GetContactsResponse, undefined | undefined>({
+    query: () => ({ url: `contacts`, method: "GET" }),
   });
 };

@@ -1,16 +1,34 @@
-import React, { useState } from "react";
-import { useGetContactsQuery } from "../features/contacts/contactsApi";
+import React from "react";
+import {
+  useAddContactMutation,
+  useGetContactsQuery,
+} from "../features/contacts/contactsApi";
 import { Link } from "react-router-dom";
 
 const ContactList: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [page, setPage] = useState(1);
   const {
     data: contacts,
     error,
     isLoading,
     isFetching,
-  } = useGetContactsQuery({ page });
+  } = useGetContactsQuery(undefined);
+
+  const [addContact] = useAddContactMutation();
+
+  const handleAddContact = async () => {
+    try {
+      const result = await addContact({
+        name: "Neilson Gamble",
+        email: "neilgamb@gmail.com",
+        phone: "123-456-7890",
+        website: "neilsongamble.com",
+      });
+
+      console.log("result", result);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   const renderLoadingState = () => {
     if (isLoading || isFetching) {
@@ -35,6 +53,7 @@ const ContactList: React.FC = () => {
       <h2>Contacts</h2>
       {renderLoadingState()}
       {renderErrorState()}
+      <button onClick={handleAddContact}>Add Contact</button>
       {contacts?.map((contact: { id: number; name: string }) => (
         <div
           key={contact.id}

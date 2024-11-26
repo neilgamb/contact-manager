@@ -5,17 +5,11 @@ import {
   FetchBaseQueryError,
   MutationDefinition,
 } from "@reduxjs/toolkit/dist/query";
+import { Contact } from "../../../types/contact";
 
-export type AddContactArgs = {
-  name: string;
-  email: string;
-};
+export type AddContactArgs = Omit<Contact, "id">;
 
-export type AddContactResponse = {
-  id: string;
-  name: string;
-  email: string;
-};
+export type AddContactResponse = Contact;
 
 export const addContactHandler = (
   builder: EndpointBuilder<
@@ -31,10 +25,15 @@ export const addContactHandler = (
   "contactsApi"
 > => {
   return builder.mutation<AddContactResponse, AddContactArgs>({
-    query: ({ name, email }) => ({
+    query: ({ name, email, phone, website }) => ({
       url: `contacts`,
       method: "POST",
-      body: { name, email },
+      body: {
+        name,
+        email,
+        phone,
+        website,
+      },
     }),
   });
 };
