@@ -2,7 +2,9 @@ import { createSelector } from "@reduxjs/toolkit";
 import { contactsApi } from "./contactsApi";
 
 // Base selector for the contacts query
-const selectContactsQuery = contactsApi.endpoints.getContacts.select(1);
+const selectContactsQuery = contactsApi.endpoints.getContacts.select({
+  page: 1,
+});
 
 // Custom selector to extract the error state
 export const selectIsGetContactsError = createSelector(

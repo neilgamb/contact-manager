@@ -9,7 +9,7 @@ const ContactList: React.FC = () => {
     error,
     isLoading,
     isFetching,
-  } = useGetContactsQuery(page);
+  } = useGetContactsQuery({ page });
 
   // const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
   //   const target = e.target as HTMLDivElement;

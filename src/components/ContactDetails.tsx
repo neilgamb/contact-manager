@@ -9,7 +9,7 @@ const ContactDetails: React.FC = () => {
     error,
     isLoading,
     isFetching,
-  } = useGetContactByIdQuery(Number(id));
+  } = useGetContactByIdQuery({ id: Number(id) });
 
   if (error) {
     return null;
