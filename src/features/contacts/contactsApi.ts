@@ -7,6 +7,7 @@ import { addContactHandler } from "./mutations/addContactHandler";
 export const contactsApi = createApi({
   reducerPath: "contactsApi",
   baseQuery,
+  tagTypes: ["Contact"],
   endpoints: (builder) => ({
     getContacts: getContactsHandler(builder),
     getContactById: getContactByIdHandler(builder),

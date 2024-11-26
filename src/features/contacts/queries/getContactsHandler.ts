@@ -12,17 +12,18 @@ export type GetContactsResponse = Contact[];
 export const getContactsHandler = (
   builder: EndpointBuilder<
     BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>,
-    never,
+    "Contact",
     "contactsApi"
   >
 ): QueryDefinition<
   undefined,
   BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>,
-  never,
+  "Contact",
   GetContactsResponse,
   "contactsApi"
 > => {
   return builder.query<GetContactsResponse, undefined | undefined>({
+    providesTags: ["Contact"],
     query: () => ({ url: `contacts`, method: "GET" }),
   });
 };

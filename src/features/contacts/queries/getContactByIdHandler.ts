@@ -16,17 +16,18 @@ export type GetContactByIdResponse = Contact;
 export const getContactByIdHandler = (
   builder: EndpointBuilder<
     BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>,
-    never,
+    "Contact",
     "contactsApi"
   >
 ): QueryDefinition<
   GetContactByIdArgs,
   BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>,
-  never,
+  "Contact",
   GetContactByIdResponse,
   "contactsApi"
 > => {
   return builder.query<GetContactByIdResponse, GetContactByIdArgs>({
+    providesTags: ["Contact"],
     query: ({ id }: GetContactByIdArgs) => ({
       url: `contacts/${id}`,
       method: "GET",

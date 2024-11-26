@@ -25,6 +25,7 @@ export const addContactHandler = (
   "contactsApi"
 > => {
   return builder.mutation<AddContactResponse, AddContactArgs>({
+    invalidatesTags: ["Contact"],
     query: ({ name, email, phone, website }) => ({
       url: `contacts`,
       method: "POST",
