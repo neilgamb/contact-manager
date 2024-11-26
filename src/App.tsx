@@ -2,9 +2,9 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactList from "./components/ContactList";
 import ContactDetails from "./components/ContactDetails";
-import "./App.css";
 import { useAppSelector } from "./app/store";
 import { selectIsGetContactsError } from "./features/contacts/contactsApiSelectors";
+import "./App.css";
 
 const App: React.FC = () => {
   const isGetContactsError = useAppSelector(selectIsGetContactsError);
@@ -17,6 +17,7 @@ const App: React.FC = () => {
             width: "300px",
             borderRight: "1px solid #ccc",
             overflowY: "auto",
+            padding: "16px",
           }}
         >
           <ContactList />
@@ -32,7 +33,7 @@ const App: React.FC = () => {
                 )
               }
             />
-            <Route path="/user/:id" element={<ContactDetails />} />
+            <Route path="/contact/:id" element={<ContactDetails />} />
           </Routes>
         </div>
       </div>

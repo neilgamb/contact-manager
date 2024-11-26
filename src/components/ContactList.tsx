@@ -3,6 +3,7 @@ import { useGetContactsQuery } from "../features/contacts/contactsApi";
 import { Link } from "react-router-dom";
 
 const ContactList: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [page, setPage] = useState(1);
   const {
     data: contacts,
@@ -10,16 +11,6 @@ const ContactList: React.FC = () => {
     isLoading,
     isFetching,
   } = useGetContactsQuery({ page });
-
-  // const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-  //   const target = e.target as HTMLDivElement;
-  //   if (
-  //     target.scrollTop + target.clientHeight >= target.scrollHeight &&
-  //     !isFetching
-  //   ) {
-  //     setPage((prev) => prev + 1);
-  //   }
-  // };
 
   const renderLoadingState = () => {
     if (isLoading || isFetching) {
@@ -40,24 +31,24 @@ const ContactList: React.FC = () => {
   };
 
   return (
-    <div
-      // onScroll={handleScroll}
-      style={{ height: "100%", overflowY: "auto", padding: "16px" }}
-    >
+    <>
       <h2>Contacts</h2>
       {renderLoadingState()}
       {renderErrorState()}
       {contacts?.map((contact: { id: number; name: string }) => (
-        <div key={contact.id} style={{ marginBottom: "8px" }}>
+        <div
+          key={contact.id}
+          style={{ padding: "10px 10px 10px 0px", marginTop: "5px" }}
+        >
           <Link
-            to={`/user/${contact.id}`}
+            to={`/contact/${contact.id}`}
             style={{ textDecoration: "none", color: "inherit" }}
           >
             {contact.name}
           </Link>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

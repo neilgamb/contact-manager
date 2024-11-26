@@ -28,8 +28,8 @@ export const getContactsHandler = (
   "contactsApi"
 > => {
   return builder.query<GetContactsResponse, GetContactsArgs | undefined>({
-    query: ({ page = 1, limit = 100 }: GetContactsArgs) => ({
-      url: `users?_page=${page}&_limit=${limit}`,
+    query: ({ page = 1, limit = 50 }: GetContactsArgs) => ({
+      url: `contacts?_page=${page}&_limit=${limit}`,
       method: "GET",
     }),
   });

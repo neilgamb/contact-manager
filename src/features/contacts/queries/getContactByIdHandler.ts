@@ -28,7 +28,7 @@ export const getContactByIdHandler = (
 > => {
   return builder.query<GetContactByIdResponse, GetContactByIdArgs | undefined>({
     query: ({ id }: GetContactByIdArgs) => ({
-      url: `users/${id}`,
+      url: `contacts/${id}`,
       method: "GET",
     }),
   });

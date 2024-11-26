@@ -32,7 +32,7 @@ export const addContactHandler = (
 > => {
   return builder.mutation<AddContactResponse, AddContactArgs>({
     query: ({ name, email }) => ({
-      url: `users`,
+      url: `contacts`,
       method: "POST",
       body: { name, email },
     }),
