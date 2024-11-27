@@ -1,23 +1,12 @@
 import React from "react";
-import { faker } from "@faker-js/faker";
-import { useAddContactMutation } from "../features/contacts/contactsApi";
 import "./ContactMenuHeader.scss";
+import { useNavigate } from "react-router-dom";
 
 const ContactMenuHeader: React.FC = () => {
-  const [addContact] = useAddContactMutation();
+  const navigate = useNavigate();
 
-  const handleAddContact = async () => {
-    try {
-      const result = await addContact({
-        name: faker.person.fullName(),
-        email: faker.internet.email(),
-        phone: faker.phone.number(),
-        website: faker.internet.url(),
-      });
-      console.log("result", result);
-    } catch (error) {
-      console.log("error", error);
-    }
+  const handleAddContact = () => {
+    navigate("/contact/add");
   };
 
   return (
