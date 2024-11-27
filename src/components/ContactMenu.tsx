@@ -1,28 +1,18 @@
 import React from "react";
-import { useGetContactsQuery } from "../features/contacts/contactsApi";
 import ContactMenuHeader from "./ContactMenuHeader";
 import ContactMenuList from "./ContactMenuList";
+import "./ContactMenu.scss";
+import { useAppSelector } from "../app/store";
+import { selectContacts } from "../features/contacts/contactsApiSelectors";
 
 const ContactMenu: React.FC = () => {
-  const { data: contacts, error, isLoading } = useGetContactsQuery(undefined);
-
-  if (isLoading) {
-    return <div>Loading contacts...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading contacts...</div>;
-  }
-
-  if (!contacts || contacts.length === 0) {
-    return <div>No contacts found</div>;
-  }
+  const contacts = useAppSelector(selectContacts);
 
   return (
-    <>
+    <div className="contact-menu">
       <ContactMenuHeader />
       <ContactMenuList contacts={contacts} />
-    </>
+    </div>
   );
 };
 

@@ -2,42 +2,28 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactMenu from "./components/ContactMenu";
 import ContactDetails from "./components/ContactDetails";
-import { useAppSelector } from "./app/store";
-import {
-  selectIsGetContactsError,
-  selectIsGetContactsLoading,
-} from "./features/contacts/contactsApiSelectors";
-import "./App.css";
+import ContactDetailEmptyState from "./components/ContactDetailEmptyState";
+import "./App.scss";
+import { useGetContactsQuery } from "./features/contacts/contactsApi";
 
 const App: React.FC = () => {
-  const isGetContactsError = useAppSelector(selectIsGetContactsError);
-  const isGetContactsLoading = useAppSelector(selectIsGetContactsLoading);
+  const { isLoading, isError } = useGetContactsQuery(undefined);
+
+  if (isLoading) {
+    return <div className="loading-state">Loading...</div>;
+  }
+
+  if (isError) {
+    return <div className="error-state">Error loading contacts :(</div>;
+  }
 
   return (
     <Router>
-      <div style={{ display: "flex", height: "100vh" }}>
-        <div
-          style={{
-            width: "300px",
-            borderRight: "1px solid #ccc",
-            overflowY: "hidden",
-          }}
-        >
-          <ContactMenu />
-        </div>
-
-        <div style={{ flex: 1, padding: "16px" }}>
+      <div className="app-container">
+        <ContactMenu />
+        <div className="contact-detail">
           <Routes>
-            <Route
-              path="/"
-              element={
-                isGetContactsLoading
-                  ? null
-                  : !isGetContactsError && (
-                      <div>Select a contact to view details</div>
-                    )
-              }
-            />
+            <Route path="/" element={<ContactDetailEmptyState />} />
             <Route path="/contact/:id" element={<ContactDetails />} />
           </Routes>
         </div>

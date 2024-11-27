@@ -1,6 +1,7 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
 import { useAddContactMutation } from "../features/contacts/contactsApi";
+import "./ContactMenuHeader.scss";
 
 const ContactMenuHeader: React.FC = () => {
   const [addContact] = useAddContactMutation();
@@ -20,10 +21,10 @@ const ContactMenuHeader: React.FC = () => {
   };
 
   return (
-    <>
+    <div className="contact-menu-header">
       <h2>Contacts</h2>
       <button onClick={handleAddContact}>Add Contact</button>
-    </>
+    </div>
   );
 };
 

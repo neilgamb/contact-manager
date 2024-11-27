@@ -1,28 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Contact } from "../types/contact";
+import ContactMenuListItem from "./ContactMenuListItem";
+import "./ContactMenuList.scss";
 
 interface ContactMenuListProps {
-  contacts: Contact[];
+  contacts?: Contact[];
 }
 
 const ContactMenuList: React.FC<ContactMenuListProps> = ({ contacts }) => {
+  if (!contacts || contacts.length === 0) {
+    return <div className="empty-state-message">No contacts yet</div>;
+  }
+
   return (
-    <>
-      {contacts.map((contact: { id: number; name: string }) => (
-        <div
-          key={contact.id}
-          style={{ padding: "10px 10px 10px 0px", marginTop: "5px" }}
-        >
-          <Link
-            to={`/contact/${contact.id}`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            {contact.name}
-          </Link>
-        </div>
+    <div className="contact-menu-list">
+      {contacts.map((contact: Contact) => (
+        <ContactMenuListItem key={contact.id} contact={contact} />
       ))}
-    </>
+    </div>
   );
 };
 

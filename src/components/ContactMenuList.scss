@@ -1,0 +1,12 @@
+.contact-menu-list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.contact-menu-list-empty-state {
+  color: #999;
+  padding: 20px;
+  font-style: italic;
+}
