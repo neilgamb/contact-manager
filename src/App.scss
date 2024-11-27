@@ -40,3 +40,12 @@ code {
   flex: 1;
   padding: 0px 20px 20px 20px;
 }
+
+button {
+  height: 30px;
+  margin-right: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

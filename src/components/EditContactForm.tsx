@@ -1,17 +1,23 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAddContactMutation } from "../features/contacts/contactsApi";
-import "./AddContactForm.scss";
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "./EditContactForm.scss";
 
-const AddContactForm: React.FC = () => {
-  const navigate = useNavigate();
-  const [addContact] = useAddContactMutation();
+const EditContactForm: React.FC = () => {
+  const location = useLocation();
+  const { contact: initialContact } = location.state || {}; // Retrieve contact from state
+
   const [contact, setContact] = useState({
     name: "",
     email: "",
     phone: "",
     website: "",
   });
+
+  useEffect(() => {
+    if (initialContact) {
+      setContact(initialContact); // Pre-populate form with passed contact data
+    }
+  }, [initialContact]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,28 +27,16 @@ const AddContactForm: React.FC = () => {
     }));
   };
 
-  const handleAddContact = async (e: React.FormEvent) => {
+  const handleEditContact = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const result = await addContact(contact);
-      if (result && result.data) {
-        navigate(`/contact/${result.data.id}`);
-      }
-    } catch (error) {
-      console.log("error", error);
-    } finally {
-      resetForm();
-    }
-  };
-
-  const resetForm = () => {
-    setContact({ name: "", email: "", phone: "", website: "" });
+    console.log(contact);
+    // Add logic to save updated contact data
   };
 
   return (
-    <div className="add-contact-form">
-      <h2>Add New Contact</h2>
-      <form onSubmit={handleAddContact}>
+    <div className="edit-contact-form">
+      <h2>Edit Contact</h2>
+      <form onSubmit={handleEditContact}>
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -81,10 +75,10 @@ const AddContactForm: React.FC = () => {
           required
         />
 
-        <button type="submit">Add</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
 };
 
-export default AddContactForm;
+export default EditContactForm;

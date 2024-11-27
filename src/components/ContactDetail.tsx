@@ -19,6 +19,10 @@ const ContactDetails: React.FC = () => {
 
   const [deleteContact] = useDeleteContactMutation();
 
+  const handleEditContact = () => {
+    navigate("/contact/edit", { state: { contact } });
+  };
+
   const handleDeleteContact = async () => {
     try {
       setIsDeleting(true);
@@ -57,6 +61,7 @@ const ContactDetails: React.FC = () => {
       <p>Email: {contact.email}</p>
       <p>Phone: {contact.phone}</p>
       <p>Website: {contact.website}</p>
+      <button onClick={handleEditContact}>Edit</button>
       <button onClick={handleDeleteContact}>Delete</button>
     </>
   );

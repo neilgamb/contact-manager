@@ -2,10 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactMenu from "./components/ContactMenu";
 import ContactDetails from "./components/ContactDetail";
+import AddContactForm from "./components/AddContactForm";
+import EditContactForm from "./components/EditContactForm";
 import ContactDetailEmptyState from "./components/ContactDetailEmptyState";
 import { useGetContactsQuery } from "./features/contacts/contactsApi";
 import "./App.scss";
-import AddContactForm from "./components/AddContactForm";
 
 const App: React.FC = () => {
   const { isLoading, isError } = useGetContactsQuery(undefined);
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/" element={<ContactDetailEmptyState />} />
             <Route path="/contact/:id" element={<ContactDetails />} />
             <Route path="/contact/add" element={<AddContactForm />} />
+            <Route path="/contact/edit" element={<EditContactForm />} />
           </Routes>
         </div>
       </div>
