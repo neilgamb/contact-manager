@@ -1,9 +1,14 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useGetContactByIdQuery } from "../features/contacts/contactsApi";
+import React, { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  useDeleteContactMutation,
+  useGetContactByIdQuery,
+} from "../features/contacts/contactsApi";
 
 const ContactDetails: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const {
     data: contact,
@@ -11,6 +16,24 @@ const ContactDetails: React.FC = () => {
     isLoading,
     isFetching,
   } = useGetContactByIdQuery({ id });
+
+  const [deleteContact] = useDeleteContactMutation();
+
+  const handleDeleteContact = async () => {
+    try {
+      setIsDeleting(true);
+      await deleteContact({ id });
+    } catch (error) {
+      console.log("Error deleting contact", error);
+    } finally {
+      setIsDeleting(false);
+      navigate("/");
+    }
+  };
+
+  if (isDeleting) {
+    return <div className="loading-state-message">Deleting contact...</div>;
+  }
 
   if (isLoading || isFetching) {
     return <div className="loading-state-message">Loading...</div>;
@@ -34,6 +57,7 @@ const ContactDetails: React.FC = () => {
       <p>Email: {contact.email}</p>
       <p>Phone: {contact.phone}</p>
       <p>Website: {contact.website}</p>
+      <button onClick={handleDeleteContact}>Delete</button>
     </>
   );
 };
