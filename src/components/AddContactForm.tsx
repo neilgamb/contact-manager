@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { faker } from "@faker-js/faker";
 import { useAddContactMutation } from "../features/contacts/contactsApi";
 import "./AddContactForm.scss";
 
@@ -35,9 +36,22 @@ const AddContactForm: React.FC = () => {
     }
   };
 
+  const handleAutoGenerate = () => {
+    const randomContact = {
+      name: faker.person.fullName(),
+      email: faker.internet.email(),
+      phone: faker.phone.number(),
+      website: faker.internet.url(),
+    };
+
+    setContact(randomContact);
+  };
+
   const resetForm = () => {
     setContact({ name: "", email: "", phone: "", website: "" });
   };
+
+  const isFormValid = Object.values(contact).every((value) => value);
 
   return (
     <div className="add-contact-form">
@@ -81,7 +95,14 @@ const AddContactForm: React.FC = () => {
           required
         />
 
-        <button type="submit">Add</button>
+        <div className="btn-container">
+          <button type="button" onClick={handleAutoGenerate}>
+            🔄
+          </button>
+          <button type="submit" disabled={!isFormValid}>
+            Add
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -23,4 +23,13 @@
       }
     }
   }
+
+  .btn-container {
+    display: flex;
+    flex-direction: row;
+
+    button:last-child {
+      flex: 1;
+    }
+  }
 }
