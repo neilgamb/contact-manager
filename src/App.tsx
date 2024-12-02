@@ -28,7 +28,7 @@ const App: React.FC = () => {
             <Route path="/" element={<ContactDetailEmptyState />} />
             <Route path="/contact/:id" element={<ContactDetail />} />
             <Route path="/contact/add" element={<AddContactForm />} />
-            <Route path="/contact/edit" element={<EditContactForm />} />
+            <Route path="/contact/edit/:id" element={<EditContactForm />} />
           </Routes>
         </div>
       </div>

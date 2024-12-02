@@ -2,14 +2,14 @@
   "contacts": [
     {
       "id": "24c1",
-      "name": "Delores Blandar",
+      "name": "Delores Blandary",
       "email": "Alexandria.Wisoky@gmail.com",
       "phone": "243-924-6562",
       "website": "https://needy-scout.name"
     },
     {
       "id": "8c4a",
-      "name": "Ms. Barbara Deckow",
+      "name": "Mrs. Barbara Deckow",
       "email": "Domenico88@yahoo.com",
       "phone": "895-558-6414 x6116",
       "website": "https://frugal-underpants.biz/"
@@ -17,9 +17,9 @@
     {
       "id": "17d2",
       "name": "Kristine Stark DDS",
-      "email": "Ashleigh_Fisher@yahoo.com",
-      "phone": "582.362.6316 x3982",
-      "website": "https://quarrelsome-gazebo.org/"
+      "email": "AshleighFisher@yahoo.com",
+      "phone": "582.362.6316",
+      "website": "https://quarrelsome-gazebo.org"
     },
     {
       "id": "e346",
@@ -46,7 +46,7 @@
       "id": "8f9d",
       "name": "Antonia Gutkowski",
       "email": "Hilario59@yahoo.com",
-      "phone": "689-835-5269 x761",
+      "phone": "689-835-5269",
       "website": "https://knotty-siege.net"
     },
     {
@@ -83,6 +83,13 @@
       "email": "Mariela_Jerde80@gmail.com",
       "phone": "(341) 876-1614 x8165",
       "website": "https://zany-anticodon.info/"
+    },
+    {
+      "id": "3af1",
+      "name": "Hope Feil",
+      "email": "Mac40@gmail.com",
+      "phone": "644-657-5790 x7409",
+      "website": "https://polite-sediment.org"
     }
   ]
 }

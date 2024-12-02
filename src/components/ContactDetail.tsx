@@ -20,7 +20,7 @@ const ContactDetail: React.FC = () => {
   const [deleteContact] = useDeleteContactMutation();
 
   const handleEditContact = () => {
-    navigate("/contact/edit", { state: { contact } });
+    navigate(`/contact/edit/${id}`, { state: { contact } });
   };
 
   const handleDeleteContact = async () => {

@@ -1,56 +1,59 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  useGetContactByIdQuery,
+  useUpdateContactMutation,
+} from "../features/contacts/contactsApi";
 import "./EditContactForm.scss";
-import { useUpdateContactMutation } from "../features/contacts/contactsApi";
+import { Contact } from "../types/contact";
 
 const EditContactForm: React.FC = () => {
-  const location = useLocation();
+  const { id = "" } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { contact: initialContact } = location.state || {}; // Retrieve contact from state
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [contact, setContact] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    website: "",
-  });
-
-  const [updateContact] = useUpdateContactMutation();
+  const {
+    data: initialContact,
+    isLoading,
+    isError,
+  } = useGetContactByIdQuery({ id });
+  const [contact, setContact] = useState<Contact | undefined>(initialContact);
+  const [updateContact, { isLoading: isUpdating }] = useUpdateContactMutation();
 
   useEffect(() => {
     if (initialContact) {
-      setContact(initialContact); // Pre-populate form with passed contact data
+      setContact(initialContact);
     }
   }, [initialContact]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setContact((prevContact) => ({
-      ...prevContact,
-      [name]: value,
-    }));
+    setContact((prev) => (prev ? { ...prev, [name]: value } : prev));
   };
 
   const handleEditContact = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!contact) {
+      return;
+    }
+
     try {
-      setIsEditing(true);
-      const updatedContact = {
-        id: initialContact.id,
-        ...contact,
-      };
-      await updateContact(updatedContact);
+      await updateContact(contact).unwrap();
+      navigate(`/contact/${contact.id}`);
     } catch (error) {
-      console.log("Error updating contact", error);
-    } finally {
-      setIsEditing(false);
-      navigate("/contact/" + initialContact.id);
+      console.error("Error updating contact", error);
     }
   };
 
-  if (isEditing) {
-    return <div className="loading-state-message">Editing contact...</div>;
+  if (isLoading || !contact) {
+    return <div className="loading-state-message">Loading...</div>;
+  }
+
+  if (isUpdating) {
+    return <div className="loading-state-message">Saving...</div>;
+  }
+
+  if (isError || !contact) {
+    return <div className="error-state-message">Contact not found.</div>;
   }
 
   return (
