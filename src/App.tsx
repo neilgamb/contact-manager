@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ContactMenu from "./components/ContactMenu";
-import ContactDetails from "./components/ContactDetail";
+import ContactDetail from "./components/ContactDetail";
 import AddContactForm from "./components/AddContactForm";
 import EditContactForm from "./components/EditContactForm";
 import ContactDetailEmptyState from "./components/ContactDetailEmptyState";
@@ -26,7 +26,7 @@ const App: React.FC = () => {
         <div className="contact-detail">
           <Routes>
             <Route path="/" element={<ContactDetailEmptyState />} />
-            <Route path="/contact/:id" element={<ContactDetails />} />
+            <Route path="/contact/:id" element={<ContactDetail />} />
             <Route path="/contact/add" element={<AddContactForm />} />
             <Route path="/contact/edit" element={<EditContactForm />} />
           </Routes>

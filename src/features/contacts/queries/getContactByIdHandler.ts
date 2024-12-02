@@ -27,6 +27,7 @@ export const getContactByIdHandler = (
   "contactsApi"
 > => {
   return builder.query<GetContactByIdResponse, GetContactByIdArgs>({
+    providesTags: ["Contact"],
     query: ({ id }: GetContactByIdArgs) => ({
       url: `contacts/${id}`,
       method: "GET",

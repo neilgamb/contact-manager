@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./EditContactForm.scss";
+import { useUpdateContactMutation } from "../features/contacts/contactsApi";
 
 const EditContactForm: React.FC = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { contact: initialContact } = location.state || {}; // Retrieve contact from state
 
+  const [isEditing, setIsEditing] = useState(false);
   const [contact, setContact] = useState({
     name: "",
     email: "",
     phone: "",
     website: "",
   });
+
+  const [updateContact] = useUpdateContactMutation();
 
   useEffect(() => {
     if (initialContact) {
@@ -29,9 +34,24 @@ const EditContactForm: React.FC = () => {
 
   const handleEditContact = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(contact);
-    // Add logic to save updated contact data
+    try {
+      setIsEditing(true);
+      const updatedContact = {
+        id: initialContact.id,
+        ...contact,
+      };
+      await updateContact(updatedContact);
+    } catch (error) {
+      console.log("Error updating contact", error);
+    } finally {
+      setIsEditing(false);
+      navigate("/contact/" + initialContact.id);
+    }
   };
+
+  if (isEditing) {
+    return <div className="loading-state-message">Editing contact...</div>;
+  }
 
   return (
     <div className="edit-contact-form">

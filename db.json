@@ -2,7 +2,7 @@
   "contacts": [
     {
       "id": "24c1",
-      "name": "Delores Blanda I",
+      "name": "Delores Blandar",
       "email": "Alexandria.Wisoky@gmail.com",
       "phone": "243-924-6562",
       "website": "https://needy-scout.name"
@@ -62,6 +62,13 @@
       "email": "Elena77@gmail.com",
       "phone": "714-383-8264 x984",
       "website": "https://competent-provision.com"
+    },
+    {
+      "id": "4f9a",
+      "name": "Neil Gamble",
+      "email": "neilgamb@gmail.com",
+      "phone": "704-576-3165",
+      "website": "www.neilsongamble.com"
     }
   ]
 }

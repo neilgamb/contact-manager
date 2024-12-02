@@ -5,7 +5,7 @@ import {
   useGetContactByIdQuery,
 } from "../features/contacts/contactsApi";
 
-const ContactDetails: React.FC = () => {
+const ContactDetail: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isDeleting, setIsDeleting] = useState(false);
@@ -67,4 +67,4 @@ const ContactDetails: React.FC = () => {
   );
 };
 
-export default ContactDetails;
+export default ContactDetail;
