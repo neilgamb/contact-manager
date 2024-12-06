@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaTrash, FaRegEdit } from "react-icons/fa";
 import {
   useDeleteContactMutation,
   useGetContactByIdQuery,
 } from "../features/contacts/contactsApi";
+import IconButton from "./IconButton";
+import "./ContactDetail.scss";
 
 const ContactDetail: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
@@ -56,14 +59,22 @@ const ContactDetail: React.FC = () => {
   }
 
   return (
-    <>
-      <h2>{contact.name}</h2>
+    <div className="contact-detail">
+      <div className="contact-detail-header">
+        <h2>{contact.name}</h2>
+        <div className="contact-detail-header-btns">
+          <IconButton onClick={handleDeleteContact}>
+            <FaTrash size={20} color="#5a5a5a" />
+          </IconButton>
+          <IconButton onClick={handleEditContact}>
+            <FaRegEdit size={20} color="red" />
+          </IconButton>
+        </div>
+      </div>
       <p>Email: {contact.email}</p>
       <p>Phone: {contact.phone}</p>
       <p>Website: {contact.website}</p>
-      <button onClick={handleEditContact}>Edit</button>
-      <button onClick={handleDeleteContact}>Delete</button>
-    </>
+    </div>
   );
 };
 

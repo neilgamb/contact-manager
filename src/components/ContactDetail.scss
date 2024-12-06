@@ -1,0 +1,23 @@
+.contact-detail {
+  .contact-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    width: 300px;
+
+    h2 {
+      margin: 0;
+    }
+
+    .contact-detail-header-btns {
+      display: flex;
+      justify-content: flex-end;
+
+      .icon-btn-container {
+        margin-left: 8px;
+        background-color: white;
+      }
+    }
+  }
+}
