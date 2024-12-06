@@ -30,3 +30,4 @@ todo:
 - debounce infinite scroll?
 - force refetch
 - skip?
+- cache invalidation (broad + fine grained)
