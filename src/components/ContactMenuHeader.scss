@@ -1,4 +1,20 @@
 .contact-menu-header {
   border-bottom: 1px solid #e0e0e0;
-  padding: 0px 20px 20px 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+
+  h2 {
+    margin: 0px;
+    vertical-align: middle;
+  }
+
+  h2:hover {
+    cursor: pointer;
+  }
+
+  .add-contact-btn {
+    background-color: rgb(63, 63, 215);
+    margin-left: 4px;
+  }
 }

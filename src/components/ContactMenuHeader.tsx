@@ -1,18 +1,26 @@
 import React from "react";
-import "./ContactMenuHeader.scss";
 import { useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
+import IconButton from "./IconButton";
+import "./ContactMenuHeader.scss";
 
 const ContactMenuHeader: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleAddContact = () => {
+  const onAddContactClick = () => {
     navigate("/contact/add");
+  };
+
+  const onHeaderClick = () => {
+    navigate("/");
   };
 
   return (
     <div className="contact-menu-header">
-      <h2>Contacts</h2>
-      <button onClick={handleAddContact}>Add Contact</button>
+      <h2 onClick={onHeaderClick}>Contacts</h2>
+      <IconButton onClick={onAddContactClick} className="add-contact-btn">
+        <FaPlus color="white" size={12} />
+      </IconButton>
     </div>
   );
 };

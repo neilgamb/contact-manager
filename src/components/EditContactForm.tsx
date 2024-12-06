@@ -4,8 +4,8 @@ import {
   useGetContactByIdQuery,
   useUpdateContactMutation,
 } from "../features/contacts/contactsApi";
-import "./EditContactForm.scss";
 import { Contact } from "../types/contact";
+import "./EditContactForm.scss";
 
 const EditContactForm: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
@@ -27,6 +27,10 @@ const EditContactForm: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setContact((prev) => (prev ? { ...prev, [name]: value } : prev));
+  };
+
+  const handleCancel = () => {
+    navigate(`/contact/${id}`);
   };
 
   const handleEditContact = async (e: React.FormEvent) => {
@@ -98,6 +102,7 @@ const EditContactForm: React.FC = () => {
           required
         />
 
+        <button onClick={handleCancel}>Cancel</button>
         <button type="submit">Submit</button>
       </form>
     </div>
