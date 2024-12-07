@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
+import { IoMdCheckmark } from "react-icons/io";
+import { RiCloseLine } from "react-icons/ri";
+import { MdOutlineAutorenew } from "react-icons/md";
 import { useAddContactMutation } from "../features/contacts/contactsApi";
+import IconButton from "./IconButton";
 import "./AddContactForm.scss";
 
 const AddContactForm: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const navigate = useNavigate();
-  const [addContact] = useAddContactMutation();
+  const [addContact, { isLoading: isSaving }] = useAddContactMutation();
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -51,57 +56,83 @@ const AddContactForm: React.FC = () => {
     setContact({ name: "", email: "", phone: "", website: "" });
   };
 
+  const onCancelClick = () => {
+    navigate(-1);
+  };
+
   const isFormValid = Object.values(contact).every((value) => value);
+
+  if (isSaving || !contact) {
+    return <div className="loading-state-message">Saving...</div>;
+  }
 
   return (
     <div className="add-contact-form">
-      <h2>Add New Contact</h2>
-      <form onSubmit={handleAddContact}>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          name="name"
-          value={contact.name}
-          onChange={handleChange}
-          required
-        />
+      <form
+        onSubmit={handleAddContact}
+        className="add-contact-form"
+        ref={formRef}
+      >
+        <div className="add-contact-form-header">
+          <h2>Add New Contact</h2>
+          <div className="add-contact-form-header-btns">
+            <IconButton onClick={handleAutoGenerate}>
+              <MdOutlineAutorenew size={18} color="#5a5a5a" />
+            </IconButton>
+            <IconButton onClick={onCancelClick}>
+              <RiCloseLine size={24} color="#5a5a5a" />
+            </IconButton>
+            <IconButton
+              disabled={!isFormValid}
+              onClick={() => {
+                if (formRef.current) {
+                  formRef.current.requestSubmit();
+                }
+              }}
+            >
+              <IoMdCheckmark size={24} color="green" />
+            </IconButton>
+          </div>
+        </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          id="email"
-          name="email"
-          type="email"
-          value={contact.email}
-          onChange={handleChange}
-          required
-        />
+        <div className="fields-container">
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            name="name"
+            value={contact.name}
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="phone">Phone</label>
-        <input
-          id="phone"
-          name="phone"
-          type="tel"
-          value={contact.phone}
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            value={contact.email}
+            onChange={handleChange}
+            required
+          />
 
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          name="website"
-          value={contact.website}
-          onChange={handleChange}
-          required
-        />
+          <label htmlFor="phone">Phone</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            value={contact.phone}
+            onChange={handleChange}
+            required
+          />
 
-        <div className="btn-container">
-          <button type="button" onClick={handleAutoGenerate}>
-            🔄
-          </button>
-          <button type="submit" disabled={!isFormValid}>
-            Add
-          </button>
+          <label htmlFor="website">Website</label>
+          <input
+            id="website"
+            name="website"
+            value={contact.website}
+            onChange={handleChange}
+            required
+          />
         </div>
       </form>
     </div>

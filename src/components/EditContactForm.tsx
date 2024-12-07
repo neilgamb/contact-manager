@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useGetContactByIdQuery,
   useUpdateContactMutation,
 } from "../features/contacts/contactsApi";
 import { Contact } from "../types/contact";
+import { IoMdCheckmark } from "react-icons/io";
+import { RiCloseLine } from "react-icons/ri";
 import "./EditContactForm.scss";
+import IconButton from "./IconButton";
 
 const EditContactForm: React.FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const { id = "" } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const {
@@ -29,7 +33,7 @@ const EditContactForm: React.FC = () => {
     setContact((prev) => (prev ? { ...prev, [name]: value } : prev));
   };
 
-  const handleCancel = () => {
+  const onCancelClick = () => {
     navigate(`/contact/${id}`);
   };
 
@@ -48,11 +52,7 @@ const EditContactForm: React.FC = () => {
     }
   };
 
-  if (isLoading || !contact) {
-    return <div className="loading-state-message">Loading...</div>;
-  }
-
-  if (isUpdating) {
+  if (isUpdating || isLoading || !contact) {
     return <div className="loading-state-message">Saving...</div>;
   }
 
@@ -61,9 +61,29 @@ const EditContactForm: React.FC = () => {
   }
 
   return (
-    <div className="edit-contact-form">
-      <h2>Edit Contact</h2>
-      <form onSubmit={handleEditContact}>
+    <form
+      className="edit-contact-form"
+      onSubmit={handleEditContact}
+      ref={formRef}
+    >
+      <div className="edit-contact-form-header">
+        <h2>Edit Contact</h2>
+        <div className="edit-contact-form-header-btns">
+          <IconButton onClick={onCancelClick}>
+            <RiCloseLine size={24} color="#5a5a5a" />
+          </IconButton>
+          <IconButton
+            onClick={() => {
+              if (formRef.current) {
+                formRef.current.requestSubmit();
+              }
+            }}
+          >
+            <IoMdCheckmark size={24} color="green" />
+          </IconButton>
+        </div>
+      </div>
+      <div className="fields-container">
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -101,11 +121,8 @@ const EditContactForm: React.FC = () => {
           onChange={handleChange}
           required
         />
-
-        <button onClick={handleCancel}>Cancel</button>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

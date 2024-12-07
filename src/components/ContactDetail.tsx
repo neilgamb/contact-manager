@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { FaTrash, FaRegEdit } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
+import { RiPencilFill } from "react-icons/ri";
+
 import {
   useDeleteContactMutation,
   useGetContactByIdQuery,
@@ -43,7 +45,7 @@ const ContactDetail: React.FC = () => {
   }
 
   if (isLoading || isFetching) {
-    return <div className="loading-state-message">Loading...</div>;
+    return <div className="loading-state-message">Loading contact...</div>;
   }
 
   if (error) {
@@ -64,10 +66,10 @@ const ContactDetail: React.FC = () => {
         <h2>{contact.name}</h2>
         <div className="contact-detail-header-btns">
           <IconButton onClick={handleDeleteContact}>
-            <FaTrash size={20} color="#5a5a5a" />
+            <FaTrash size={14} color="#5a5a5a" />
           </IconButton>
           <IconButton onClick={handleEditContact}>
-            <FaRegEdit size={20} color="red" />
+            <RiPencilFill size={20} color="#5a5a5a" />
           </IconButton>
         </div>
       </div>

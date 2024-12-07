@@ -9,5 +9,15 @@
 
   &:hover {
     cursor: pointer;
+    opacity: 0.8;
+  }
+
+  &.disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+
+    svg {
+      fill: lightgray;
+    }
   }
 }

@@ -23,7 +23,7 @@ const App: React.FC = () => {
     <Router>
       <div className="app-container">
         <ContactMenu />
-        <div className="contact-detail">
+        <div className="contact-detail-container">
           <Routes>
             <Route path="/" element={<ContactDetailEmptyState />} />
             <Route path="/contact/:id" element={<ContactDetail />} />
