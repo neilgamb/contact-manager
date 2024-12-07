@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
-
 import {
   useDeleteContactMutation,
   useGetContactByIdQuery,
 } from "../features/contacts/contactsApi";
-import IconButton from "./IconButton";
-import "./ContactDetail.scss";
 import { setActiveContactId } from "../state/app";
 import { AppDispatch, useAppDispatch } from "../state/store";
+import IconButton from "./IconButton";
+import "./ContactDetail.scss";
 
 const ContactDetail: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
@@ -28,7 +27,7 @@ const ContactDetail: React.FC = () => {
   const [deleteContact] = useDeleteContactMutation();
 
   const handleEditContact = () => {
-    navigate(`/contact/edit/${id}`, { state: { contact } });
+    navigate(`/contact/edit/${id}`);
   };
 
   const handleDeleteContact = async () => {

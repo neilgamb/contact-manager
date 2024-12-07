@@ -4,7 +4,7 @@ import "./IconButton.scss";
 interface IconButtonProps {
   children: React.ReactNode;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
 }
 

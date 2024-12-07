@@ -18,6 +18,14 @@
         margin-left: 8px;
         background-color: white;
       }
+
+      .progress-indicator {
+        animation: spin 2s linear infinite;
+
+        &:hover {
+          cursor: default;
+        }
+      }
     }
   }
 

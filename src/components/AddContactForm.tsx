@@ -4,6 +4,7 @@ import { faker } from "@faker-js/faker";
 import { IoMdCheckmark } from "react-icons/io";
 import { RiCloseLine } from "react-icons/ri";
 import { MdOutlineAutorenew } from "react-icons/md";
+import { TbProgress } from "react-icons/tb";
 import { useAddContactMutation } from "../features/contacts/contactsApi";
 import IconButton from "./IconButton";
 import "./AddContactForm.scss";
@@ -25,6 +26,12 @@ const AddContactForm: React.FC = () => {
       ...prevContact,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = () => {
+    if (formRef.current) {
+      formRef.current.requestSubmit();
+    }
   };
 
   const handleAddContact = async (e: React.FormEvent) => {
@@ -62,10 +69,6 @@ const AddContactForm: React.FC = () => {
 
   const isFormValid = Object.values(contact).every((value) => value);
 
-  if (isSaving || !contact) {
-    return <div className="loading-state-message">Saving...</div>;
-  }
-
   return (
     <div className="add-contact-form">
       <form
@@ -76,22 +79,25 @@ const AddContactForm: React.FC = () => {
         <div className="add-contact-form-header">
           <h2>Add New Contact</h2>
           <div className="add-contact-form-header-btns">
-            <IconButton onClick={handleAutoGenerate}>
-              <MdOutlineAutorenew size={18} color="#5a5a5a" />
-            </IconButton>
-            <IconButton onClick={onCancelClick}>
-              <RiCloseLine size={24} color="#5a5a5a" />
-            </IconButton>
-            <IconButton
-              disabled={!isFormValid}
-              onClick={() => {
-                if (formRef.current) {
-                  formRef.current.requestSubmit();
-                }
-              }}
-            >
-              <IoMdCheckmark size={24} color="green" />
-            </IconButton>
+            {isSaving ? (
+              <TbProgress
+                size={18}
+                color="blue"
+                className="progress-indicator"
+              />
+            ) : (
+              <>
+                <IconButton onClick={handleAutoGenerate}>
+                  <MdOutlineAutorenew size={18} color="#5a5a5a" />
+                </IconButton>
+                <IconButton onClick={onCancelClick}>
+                  <RiCloseLine size={24} color="#5a5a5a" />
+                </IconButton>
+                <IconButton disabled={!isFormValid} onClick={handleSubmit}>
+                  <IoMdCheckmark size={24} color="green" />
+                </IconButton>
+              </>
+            )}
           </div>
         </div>
 
@@ -102,6 +108,7 @@ const AddContactForm: React.FC = () => {
             name="name"
             value={contact.name}
             onChange={handleChange}
+            disabled={isSaving}
             required
           />
 
@@ -112,6 +119,7 @@ const AddContactForm: React.FC = () => {
             type="email"
             value={contact.email}
             onChange={handleChange}
+            disabled={isSaving}
             required
           />
 
@@ -122,6 +130,7 @@ const AddContactForm: React.FC = () => {
             type="tel"
             value={contact.phone}
             onChange={handleChange}
+            disabled={isSaving}
             required
           />
 
@@ -131,6 +140,7 @@ const AddContactForm: React.FC = () => {
             name="website"
             value={contact.website}
             onChange={handleChange}
+            disabled={isSaving}
             required
           />
         </div>

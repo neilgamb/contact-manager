@@ -19,7 +19,7 @@ const ContactMenuHeader: React.FC = () => {
     <div className="contact-menu-header">
       <h2 onClick={onHeaderClick}>Contacts</h2>
       <IconButton onClick={onAddContactClick} className="add-contact-btn">
-        <FaPlus color="white" size={12} />
+        <FaPlus color="white" size={8} />
       </IconButton>
     </div>
   );
