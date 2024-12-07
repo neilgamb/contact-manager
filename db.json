@@ -44,7 +44,7 @@
     },
     {
       "id": "774a",
-      "name": "Gregory Schaefer",
+      "name": "Gregory Schaefers",
       "email": "Brittany.Boyle50@yahoo.com",
       "phone": "1-490-843-1534",
       "website": "https://orange-suitcase.biz/"
@@ -69,6 +69,13 @@
       "email": "Chet.Orn@yahoo.com",
       "phone": "505-793-1885 x8910",
       "website": "https://tired-futon.org"
+    },
+    {
+      "id": "7fde",
+      "name": "Forrest Rempel",
+      "email": "Randi_Altenwerth43@yahoo.com",
+      "phone": "1-960-622-4339 x21873",
+      "website": "https://total-orchid.name/"
     }
   ]
 }

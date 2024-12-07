@@ -2,7 +2,7 @@ import React from "react";
 import ContactMenuHeader from "./ContactMenuHeader";
 import ContactMenuList from "./ContactMenuList";
 import "./ContactMenu.scss";
-import { useAppSelector } from "../app/store";
+import { useAppSelector } from "../state/store";
 import { selectContacts } from "../features/contacts/contactsApiSelectors";
 
 const ContactMenu: React.FC = () => {

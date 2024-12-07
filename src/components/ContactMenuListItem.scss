@@ -14,5 +14,9 @@
     &:first-child {
       border-top: none;
     }
+
+    &.active {
+      background-color: #f0f0f0;
+    }
   }
 }

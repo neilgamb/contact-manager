@@ -1,4 +1,4 @@
-import { useAppSelector } from "../app/store";
+import { useAppSelector } from "../state/store";
 import { selectContacts } from "../features/contacts/contactsApiSelectors";
 
 const ContactDetailEmptyState: React.FC = () => {

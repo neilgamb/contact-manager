@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   useGetContactByIdQuery,
   useUpdateContactMutation,
@@ -9,18 +9,22 @@ import { IoMdCheckmark } from "react-icons/io";
 import { RiCloseLine } from "react-icons/ri";
 import "./EditContactForm.scss";
 import IconButton from "./IconButton";
+import { useAppSelector } from "../state/store";
+import { selectActiveContactId } from "../state/app";
 
 const EditContactForm: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const { id = "" } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const activeContactId = useAppSelector(selectActiveContactId);
+
   const {
     data: initialContact,
     isLoading,
     isError,
-  } = useGetContactByIdQuery({ id });
-  const [contact, setContact] = useState<Contact | undefined>(initialContact);
+  } = useGetContactByIdQuery({ id: String(activeContactId) });
   const [updateContact, { isLoading: isUpdating }] = useUpdateContactMutation();
+
+  const [contact, setContact] = useState<Contact | undefined>(initialContact);
 
   useEffect(() => {
     if (initialContact) {
@@ -34,7 +38,7 @@ const EditContactForm: React.FC = () => {
   };
 
   const onCancelClick = () => {
-    navigate(`/contact/${id}`);
+    navigate(`/contact/${activeContactId}`);
   };
 
   const handleEditContact = async (e: React.FormEvent) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
@@ -9,10 +9,13 @@ import {
 } from "../features/contacts/contactsApi";
 import IconButton from "./IconButton";
 import "./ContactDetail.scss";
+import { setActiveContactId } from "../state/app";
+import { AppDispatch, useAppDispatch } from "../state/store";
 
 const ContactDetail: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const dispatch: AppDispatch = useAppDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
 
   const {
@@ -39,6 +42,12 @@ const ContactDetail: React.FC = () => {
       navigate("/");
     }
   };
+
+  useEffect(() => {
+    if (id) {
+      dispatch(setActiveContactId(id));
+    }
+  }, [dispatch, id]);
 
   if (isDeleting) {
     return <div className="loading-state-message">Deleting contact...</div>;
