@@ -1,6 +1,6 @@
 # Contact Manager
 
-A simple Contact Manager application built with React, TypeScript, React Router and Redux Toolkit and RTK Query. This app demonstrates basic CRUD functionality using RTK Query for API interactions.
+A simple Contact Manager application built with [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [React Router](https://reactrouter.com/) and [Redux Toolkit](https://redux-toolkit.js.org/) and [RTK Query](https://redux-toolkit.js.org/). This app demonstrates basic CRUD functionality using RTK Query for API interactions.
 
 ## Features
 
