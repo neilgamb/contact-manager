@@ -9,7 +9,7 @@ import { useGetContactsQuery } from "./features/contacts/contactsApi";
 import "./App.scss";
 
 const App: React.FC = () => {
-  const { isLoading, isError } = useGetContactsQuery(undefined);
+  const { isLoading, isError } = useGetContactsQuery();
 
   if (isLoading) {
     return <div className="loading-state">Loading...</div>;

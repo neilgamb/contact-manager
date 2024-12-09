@@ -19,13 +19,13 @@ export const getContactsHandler = (
     "contactsApi"
   >
 ): QueryDefinition<
-  undefined,
+  void,
   BaseQueryFn<FetchArgs, unknown, FetchBaseQueryError>,
   "Contact",
   GetContactsResponse,
   "contactsApi"
 > => {
-  return builder.query<GetContactsResponse, undefined | undefined>({
+  return builder.query<GetContactsResponse, void>({
     providesTags: ["Contact"],
     query: () => ({ url: `contacts`, method: "GET" }),
     transformResponse: (response: Contact[]) => {

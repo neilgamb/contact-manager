@@ -1,29 +1,15 @@
 {
   "contacts": [
     {
-      "id": "bda4",
-      "name": "Leon Reinger",
-      "email": "Loraine79@gmail.com",
-      "phone": "614-799-9158",
-      "website": "https://sniveling-zebra.net"
-    },
-    {
       "id": "e4cb",
-      "name": "Dr. Bradley Weissnate",
+      "name": "Dr. Bradley Weiss",
       "email": "Precious_Haag-Stamm70@gmail.com",
       "phone": "1-681-953-9390",
       "website": "https://firm-gray.net/"
     },
     {
-      "id": "774a",
-      "name": "Gregory Schaefers",
-      "email": "Brittany.Boyle50@yahoo.com",
-      "phone": "1-490-843-1534",
-      "website": "https://orange-suitcase.biz/"
-    },
-    {
       "id": "7923",
-      "name": "Betty VonRueden",
+      "name": "Betty VonRuede",
       "email": "Jamaal_Conroy@yahoo.com",
       "phone": "1-810-604-5570 x9837",
       "website": "https://noxious-majority.name"
@@ -76,6 +62,13 @@
       "email": "Elenora30@gmail.com",
       "phone": "324.928.5160",
       "website": "https://gloomy-coin.net/"
+    },
+    {
+      "id": "caa2",
+      "name": "Danny Beatty",
+      "email": "Sister.Harris@hotmail.com",
+      "phone": "1-965-605-4926 x378",
+      "website": "https://strict-role.org"
     }
   ]
 }
