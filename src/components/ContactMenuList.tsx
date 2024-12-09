@@ -1,21 +1,20 @@
 import React from "react";
-import { Contact } from "../types/contact";
 import ContactMenuListItem from "./ContactMenuListItem";
 import "./ContactMenuList.scss";
 
 interface ContactMenuListProps {
-  contacts?: Contact[];
+  contactIds?: number[];
 }
 
-const ContactMenuList: React.FC<ContactMenuListProps> = ({ contacts }) => {
-  if (!contacts || contacts.length === 0) {
+const ContactMenuList: React.FC<ContactMenuListProps> = ({ contactIds }) => {
+  if (!contactIds || contactIds.length === 0) {
     return <div className="empty-state-message">No contacts yet</div>;
   }
 
   return (
     <div className="contact-menu-list">
-      {contacts.map((contact: Contact) => (
-        <ContactMenuListItem key={contact.id} contact={contact} />
+      {contactIds.map((contactId: number) => (
+        <ContactMenuListItem key={contactId} contactId={contactId} />
       ))}
     </div>
   );

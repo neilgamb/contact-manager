@@ -25,7 +25,7 @@ export const updateContactHandler = (
   "contactsApi"
 > => {
   return builder.mutation<UpdateContactResponse, UpdateContactArgs>({
-    invalidatesTags: ["Contact"],
+    // invalidatesTags: ["Contact"],
     query: ({ id, name, email, phone, website }) => ({
       url: `contacts/${id}`,
       method: "PATCH",

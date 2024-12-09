@@ -1,8 +1,8 @@
 import { useAppSelector } from "../state/store";
-import { selectContacts } from "../features/contacts/contactsApiSelectors";
+import { selectContactIds } from "../features/contacts/contactsApiSelectors";
 
 const ContactDetailEmptyState: React.FC = () => {
-  const contacts = useAppSelector(selectContacts);
+  const contacts = useAppSelector(selectContactIds);
 
   if (!contacts || contacts.length === 0) {
     return null;
