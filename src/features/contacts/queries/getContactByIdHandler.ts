@@ -28,6 +28,7 @@ export const getContactByIdHandler = (
 > => {
   return builder.query<GetContactByIdResponse, GetContactByIdArgs>({
     providesTags: (arg) => [{ type: "Contact", id: arg?.id }],
+    // keepUnusedDataFor: 5, // seconds
     query: ({ id }: GetContactByIdArgs) => ({
       url: `contacts/${id}`,
       method: "GET",

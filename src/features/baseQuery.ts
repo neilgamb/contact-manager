@@ -7,6 +7,6 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const baseQuery = async (args: any, api: any, extraOptions: any) => {
   // Add artificial delay (e.g., 2 seconds)
-  await delay(500);
+  await delay(750);
   return fetchBaseQuery({ baseUrl: BASE_URL })(args, api, extraOptions);
 };

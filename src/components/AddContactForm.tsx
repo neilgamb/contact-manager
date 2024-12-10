@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { faker } from "@faker-js/faker";
 import { IoMdCheckmark } from "react-icons/io";
 import { RiCloseLine } from "react-icons/ri";
-import { MdOutlineAutorenew } from "react-icons/md";
+import { MdAutoAwesome } from "react-icons/md";
 import { TbProgress } from "react-icons/tb";
 import { useAddContactMutation } from "../features/contacts/contactsApi";
 import IconButton from "./IconButton";
@@ -88,7 +88,7 @@ const AddContactForm: React.FC = () => {
             ) : (
               <>
                 <IconButton onClick={handleAutoGenerate}>
-                  <MdOutlineAutorenew size={18} color="#5a5a5a" />
+                  <MdAutoAwesome size={18} color="#5a5a5a" />
                 </IconButton>
                 <IconButton onClick={onCancelClick}>
                   <RiCloseLine size={24} color="#5a5a5a" />

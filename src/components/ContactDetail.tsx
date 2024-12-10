@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
 import {
@@ -13,16 +13,26 @@ import "./ContactDetail.scss";
 
 const ContactDetail: React.FC = () => {
   const { id = "" } = useParams<{ id: string }>();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const dispatch: AppDispatch = useAppDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const skip = Boolean(searchParams.get("skip"));
 
   const {
     data: contact,
     error,
     isLoading,
     isFetching,
-  } = useGetContactByIdQuery({ id });
+  } = useGetContactByIdQuery(
+    { id },
+    {
+      // skip,
+      // refetchOnFocus: true,
+      // pollingInterval: 1000,
+    }
+  );
 
   const [deleteContact] = useDeleteContactMutation();
 

@@ -31,6 +31,7 @@ const App: React.FC = () => {
             <Route path="/contact/edit/:id" element={<EditContactForm />} />
           </Routes>
         </div>
+        <footer>Contact Manager | An RTK Query Demo</footer>
       </div>
     </Router>
   );
