@@ -18,6 +18,7 @@ const ContactDetail: React.FC = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const skip = Boolean(searchParams.get("skip"));
 
   const {
@@ -30,6 +31,7 @@ const ContactDetail: React.FC = () => {
     {
       // skip,
       // refetchOnFocus: true,
+      // refetchOnMountOrArgChange: true,
       // pollingInterval: 1000,
     }
   );
